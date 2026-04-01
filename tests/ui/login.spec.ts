@@ -3,7 +3,7 @@ import {test, expect} from "@playwright/test";
 test("Successfully Logged In", async  ({page}) =>{
 
     //Navigate to the login page
-    await page.goto("https://the-internet.herokuapp.com/login");
+    await page.goto("/login");
 
     //find the username field and type in the username
     await page.getByLabel('Username').fill("tomsmith");
@@ -21,7 +21,7 @@ test("Successfully Logged In", async  ({page}) =>{
 test("Failed Logged In", async ({page}) =>{
 
     //navigate to the login page
-    await page.goto("https://the-internet.herokuapp.com/login");
+    await page.goto("/login");
 
     //find the username and password field and enter incorrect details
     await page.getByLabel('Username').fill("Invalidusername");
@@ -37,7 +37,7 @@ test("Failed Logged In", async ({page}) =>{
 test("Logout", async ({page}) =>{
 
     //navigate to the url
-    await page.goto("https://the-internet.herokuapp.com/login");
+    await page.goto("/login");
 
     //Find Username and password field and enter correct details
     await page.getByLabel('Username').fill('tomsmith');
@@ -51,6 +51,7 @@ test("Logout", async ({page}) =>{
 
     //Search for the logout button and click on it
     await page.locator('i', {hasText: 'Logout'}).click();
+
 
     //Asser that the user is successfully logged out by checking for the presence of the login button and text "You logged out of the secure area!"
     await expect(page.getByText('You logged out of the secure area!')).toBeVisible();
